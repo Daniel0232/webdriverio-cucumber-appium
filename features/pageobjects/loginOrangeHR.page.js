@@ -4,20 +4,20 @@ const Page = require('./page');
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class LoginPage extends Page {
+class LoginOrangeHRPage extends Page {
     /**
      * define selectors using getter methods
      */
     get inputUsername () {
-        return $('#username');
+        return $('button[name="username"]');
     }
 
     get inputPassword () {
-        return $('#password');
+        return $('button[name="username"]');
     }
 
     get btnSubmit () {
-        return $('button[type="submit"]');
+        return $('.oxd-button oxd-button--medium oxd-button--main orangehrm-login-button');
     }
 
     /**
@@ -25,17 +25,20 @@ class LoginPage extends Page {
      * e.g. to login using username and password
      */
     async login (username, password) {
-        await this.inputUsername.setValue(username);
+        /*await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
+        await this.btnSubmit.click();*/
+        await this.type(this.inputUsername, username);
+        await this.type(this.inputPassword, password);
+        await this.click(this.btnSubmit);
     }
 
     /**
      * overwrite specific options to adapt it to page object
      */
     open () {
-        return super.open('https://the-internet.herokuapp.com/login');
+        return super.open('https://https://opensource-demo.orangehrmlive.com/');
     }
 }
 
-module.exports = new LoginPage();
+module.exports = new LoginOrangeHRPage();
