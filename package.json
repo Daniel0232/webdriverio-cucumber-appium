@@ -1,0 +1,26 @@
+{
+  "name": "webdriverio-cucumber-appium",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx wdio run ./wdio.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daniel0232/webdriverio-cucumber-appium.git"
+  },
+  "author": "Daniel Pérez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Daniel0232/webdriverio-cucumber-appium/issues"
+  },
+  "homepage": "https://github.com/Daniel0232/webdriverio-cucumber-appium#readme",
+  "description": "",
+  "devDependencies": {
+    "@wdio/cli": "^9.8.0",
+    "@wdio/cucumber-framework": "^9.7.3",
+    "@wdio/local-runner": "^9.8.0",
+    "@wdio/spec-reporter": "^9.8.0",
+    "@wdio/visual-service": "^6.3.1"
+  }
+}
