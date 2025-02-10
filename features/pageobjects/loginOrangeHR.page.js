@@ -9,15 +9,15 @@ class LoginOrangeHRPage extends Page {
      * define selectors using getter methods
      */
     get inputUsername () {
-        return $('button[name="username"]');
+        return $('input[name="username"]');
     }
 
     get inputPassword () {
-        return $('button[name="username"]');
+        return $('input[name="password"]');
     }
 
     get btnSubmit () {
-        return $('.oxd-button oxd-button--medium oxd-button--main orangehrm-login-button');
+        return $('.oxd-button.oxd-button--medium.oxd-button--main.orangehrm-login-button');
     }
 
     /**

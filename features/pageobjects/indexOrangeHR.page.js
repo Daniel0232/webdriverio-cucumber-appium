@@ -9,7 +9,7 @@ class indexOrangeHRPage extends Page {
      * define selectors using getter methods
      */
     get errorMessage () {
-        return $('.oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module');
+        return $('.oxd-alert.oxd-alert--error');
     }
 }
 
