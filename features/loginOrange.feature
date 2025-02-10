@@ -14,10 +14,10 @@ Feature: Orange HRM login
 
         Given I am on the "orangehrm login" page
         When I enter <username> and <password> on "orangehrm login" page
-        Then I should see the dashboard page <url>
+        Then I should see the "dashboard" page <url>
 
         Examples:
             | username | password | url                                                                     |
-            | Admin    | admin123 | index |
+            | Admin    | admin123 | https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index |
 
 
