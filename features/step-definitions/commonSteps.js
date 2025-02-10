@@ -2,7 +2,7 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const { browser } = require('@wdio/globals')
 const LoginPage = require('../pageobjects/login.page');
 const LoginOrangeHRPage = require('../pageobjects/loginOrangeHR.page');
-
+const IndexOrangeHRPage = require('../pageobjects/indexOrangeHR.page')
 /**
  * I have included all the common steps which are repeated in most logins tests, being filtered by a key word in the gherking in order to select the correct pageObject
  */

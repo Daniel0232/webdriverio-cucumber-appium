@@ -1,4 +1,4 @@
-const { Given, When, Then } = require('@wdio/cucumber-framework');
+const { Then } = require('@wdio/cucumber-framework');
 const { expect, $ } = require('@wdio/globals')
 const SecurePage = require('../pageobjects/secure.page');
 
