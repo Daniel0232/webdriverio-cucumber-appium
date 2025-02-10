@@ -25,19 +25,16 @@ class LoginOrangeHRPage extends Page {
      * e.g. to login using username and password
      */
     async login (username, password) {
-        /*await this.inputUsername.setValue(username);
+        await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();*/
-        await this.type(this.inputUsername, username);
-        await this.type(this.inputPassword, password);
-        await this.click(this.btnSubmit);
+        await this.btnSubmit.click();
     }
 
     /**
      * overwrite specific options to adapt it to page object
      */
     open () {
-        return super.open('https://https://opensource-demo.orangehrmlive.com/');
+        return super.open('https://opensource-demo.orangehrmlive.com/');
     }
 }
 

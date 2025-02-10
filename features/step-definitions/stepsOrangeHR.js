@@ -8,17 +8,8 @@ const pages = {
     login: LoginOrangeHRPage
 }
 
-Given(/^I am on the (\w+) page$/, async (page) => {
-    await pages[page].open()
-});
-
-When(/^I login with (\w+) and (.+)$/, async (page, username, password) => {
-    await LoginOrangeHRPage.login(username, password)
-    await pages[page].type()
-});
-
-Then(/^I should see a flash message saying (.*)$/, async (message) => {
-    await expect(SecurePage.flashAlert).toBeExisting();
-    await expect(SecurePage.flashAlert).toHaveText(expect.stringContaining(message));
+Then(/^I should see a error message saying (.*)$/, async (message) => {
+    await expect(indexOrangeHRPage.errorMessage).toBeExisting();
+    await expect(indexOrangeHRPage.errorMessage).toHaveText(expect.stringContaining(message));
 });
 

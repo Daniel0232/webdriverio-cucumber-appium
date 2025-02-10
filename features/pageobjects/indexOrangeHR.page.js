@@ -8,7 +8,7 @@ class indexOrangeHRPage extends Page {
     /**
      * define selectors using getter methods
      */
-    get flashAlert () {
+    get errorMessage () {
         return $('.oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module');
     }
 }

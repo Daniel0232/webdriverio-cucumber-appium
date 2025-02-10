@@ -10,14 +10,6 @@ module.exports = class Page {
     * @param path path of the sub page (e.g. /path/to/page.html)
     */
     open (path) {
-        return browser.url(`https://opensource-demo.orangehrmlive.com/`)
-    }
-
-    click(element){
-        return browser.$(element).click()
-    }
-
-    type(element, text){
-        return browser.$(element).addValue(text)
+        return browser.url(path)
     }
 }
