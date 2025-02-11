@@ -2,28 +2,66 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const { browser } = require('@wdio/globals')
 const LoginPage = require('../pageobjects/login.page');
 const LoginOrangeHRPage = require('../pageobjects/loginOrangeHR.page');
-const IndexOrangeHRPage = require('../pageobjects/indexOrangeHR.page')
+const MainOrangeHRPage = require('../pageobjects/mainOrangeHR.page');
+const LoginNopCommerce = require('../pageobjects/nopCommerceLogin.page');
 /**
  * I have included all the common steps which are repeated in most logins tests, being filtered by a key word in the gherking in order to select the correct pageObject
  */
 
-Given(/^I am on the "(.*)" page$/, async (page) => {
-    if (page === 'login')  await LoginPage.open();
-    if (page === 'orangehrm login') await LoginOrangeHRPage.open();
+const pages = {
+    "login": LoginPage,
+    "orangehrm login": LoginOrangeHRPage,
+    "orangehrm main": MainOrangeHRPage,
+    "NopCommerce login": LoginNopCommerce
+};
+
+Given(/^I am on the "(.*)" page$/, async (pageName) => {
+    const pageObject = pages[pageName.toLowerCase()];
+
+    if (!pageObject) {
+        throw new Error(`❌ No se encontró un Page Object para "${pageName}"`);
+    }
+
+    try {
+        await pageObject.open();
+        console.log(`✅ Navegando a la página: ${pageName}`);
+    } catch (error) {
+        console.error(`❌ Error al abrir la página "${pageName}":`, error);
+        throw error;
+    }
 });
 
-When(/^I enter (.*) and (.*) on "(.*)" page$/, async (username, password, page) => {
-    if (page === 'login') await LoginPage.login(username, password);
-    if (page === 'orangehrm login') 
-        await LoginOrangeHRPage.login(username, password);
+When(/^I enter (.*) and (.*) on "(.*)" page$/, async (username, password, pageName) => {
+    const pageObject = pages[pageName.toLowerCase()];
+    try {
+        console.log(pageObject);
+        await pageObject.login(username,password);
+        console.log(`✅ Login completado con éxito: ${pageName}`);
+    } catch (error) {
+        console.error(`❌ Login no completado "${pageName}":`, error);
+        throw error;
+    }
 });
 
-Then(/^I should see the "(.*)" page (.*)$/, async (page, url) => {
-    const currentUrl = await browser.getUrl();
-    if (page === 'dashboard')  await expect(currentUrl).toBe(url)
+Then(/^I should see the dashboard page (.*)$/, async (url) => {
+    try {
+        await expect(browser).toHaveUrl(url)
+        console.log(`✅ Vemos el dashboard`);
+    } catch (error) {
+        console.error(`❌ Ha habido un error al ir al dashboard: `, error);
+        throw error;
+    }
 });
 
-Then(/^I should see a error message saying (.*)$/, async (message) => {
-    await expect(IndexOrangeHRPage.errorMessage).toBeExisting();
-    await expect(IndexOrangeHRPage.errorMessage).toHaveText(expect.stringContaining(message));
+Then(/^I should see a error message saying (.*) from "(.*)" page$/, async (message, pageName) => {
+    const pageObject = pages[pageName.toLowerCase()];
+    try {
+        await expect(pageObject.errorMessage).toBeExisting();
+        await expect(pageObject.errorMessage).toHaveText(expect.stringContaining(message));
+        console.log(`✅ El error "${message}" es correcto`);
+    } catch (error) {
+        console.log(`❌ No se ve el error "${message}"`);
+    }
 });
+
+

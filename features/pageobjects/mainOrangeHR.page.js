@@ -4,7 +4,7 @@ const Page = require('./page');
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class indexOrangeHRPage extends Page {
+class mainOrangeHRpage extends Page {
     /**
      * define selectors using getter methods
      */
@@ -13,4 +13,4 @@ class indexOrangeHRPage extends Page {
     }
 }
 
-module.exports = new indexOrangeHRPage();
+module.exports = new mainOrangeHRpage();

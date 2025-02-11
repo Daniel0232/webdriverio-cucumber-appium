@@ -4,7 +4,7 @@ Feature: Orange HRM login
 
         Given I am on the "orangehrm login" page
         When I enter <username> and <password> on "orangehrm login" page
-        Then I should see a error message saying <message>
+        Then I should see a error message saying <message> from "orangehrm login" page
 
         Examples:
             | username | password | message             |
@@ -14,7 +14,7 @@ Feature: Orange HRM login
 
         Given I am on the "orangehrm login" page
         When I enter <username> and <password> on "orangehrm login" page
-        Then I should see the "dashboard" page <url>
+        Then I should see the dashboard page <url>
 
         Examples:
             | username | password | url                                                                     |
