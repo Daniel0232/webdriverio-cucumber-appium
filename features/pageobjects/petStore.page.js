@@ -1,10 +1,10 @@
-const { $ } = require('@wdio/globals')
+const { $ } = require('@wdio/globals');
 const Page = require('./page');
 
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class nopCommerceLogin extends Page {
+class NopCommerceLogin extends Page {
     /**
      * define selectors using getter methods
      */
@@ -37,11 +37,7 @@ class nopCommerceLogin extends Page {
         await this.inputPassword.setValue(password);
         await this.btnSubmit.click();
     }
-
-    async goToLogin(){
-        await this.adminbutton.click();
-    }
-
+    
     async errorMessage(){
         return this.errorMessage;
     }
@@ -52,6 +48,7 @@ class nopCommerceLogin extends Page {
     open () {
         return super.open('https://www.nopcommerce.com/en/demo');
     }
+    
 }
 
-module.exports = new nopCommerceLogin();
+module.exports = new NopCommerceLogin();

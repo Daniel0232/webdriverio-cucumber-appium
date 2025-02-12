@@ -3,7 +3,7 @@ const { browser } = require('@wdio/globals')
 const LoginPage = require('../pageobjects/login.page');
 const LoginOrangeHRPage = require('../pageobjects/loginOrangeHR.page');
 const MainOrangeHRPage = require('../pageobjects/mainOrangeHR.page');
-const LoginNopCommerce = require('../pageobjects/nopCommerceLogin.page');
+const LoginNopCommerce = require('../pageobjects/petStore.page');
 /**
  * I have included all the common steps which are repeated in most logins tests, being filtered by a key word in the gherking in order to select the correct pageObject
  */
@@ -12,7 +12,7 @@ const pages = {
     "login": LoginPage,
     "orangehrm login": LoginOrangeHRPage,
     "orangehrm main": MainOrangeHRPage,
-    "NopCommerce login": LoginNopCommerce
+    "nopcommerce login": LoginNopCommerce
 };
 
 Given(/^I am on the "(.*)" page$/, async (pageName) => {
