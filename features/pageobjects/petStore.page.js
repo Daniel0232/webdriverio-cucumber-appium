@@ -1,54 +1,32 @@
-const { $ } = require('@wdio/globals');
+const { $ } = require('@wdio/globals')
 const Page = require('./page');
 
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class NopCommerceLogin extends Page {
+class PetStore extends Page {
     /**
      * define selectors using getter methods
      */
-    get adminbutton(){
-        return $('.admin-button')
-    }
-
-    get inputUsername () {
-        return $('#Email');
-    }
-
-    get inputPassword () {
-        return $('#Password');
-    }
-
-    get btnSubmit () {
-        return $('.login-button');
-    }
-
-    get errorMessage(){
-        return $('.field-validation-error')
-    }
+    get singInButton () {
+        return $('a[href*="signonForm="]'); // Selector that looks for any 'href' which contains 'signonForm='
+    }    
 
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
      */
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
-    }
-    
-    async errorMessage(){
-        return this.errorMessage;
+    async goSingIn () {
+        console.log(this.singInButton);
+        await this.singInButton.click();
     }
 
     /**
      * overwrite specific options to adapt it to page object
      */
     open () {
-        return super.open('https://www.nopcommerce.com/en/demo');
+        return super.open('https://petstore.octoperf.com/actions/Catalog.action');
     }
-    
 }
 
-module.exports = new NopCommerceLogin();
+module.exports = new PetStore();
