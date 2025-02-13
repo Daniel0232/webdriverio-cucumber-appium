@@ -5,6 +5,7 @@ const LoginOrangeHRPage = require('../pageobjects/loginOrangeHR.page');
 const MainOrangeHRPage = require('../pageobjects/mainOrangeHR.page');
 const LoginNopCommerce = require('../pageobjects/petStore.page');
 const PetStore = require('../pageobjects/petStore.page');
+const petStoreError = require('../pageobjects/petStoreError.page');
 /**
  * I have included all the common steps which are repeated in most logins tests, being filtered by a key word in the gherking in order to select the correct pageObject
  */
@@ -14,7 +15,8 @@ const pages = {
     "orangehrm login": LoginOrangeHRPage,
     "orangehrm main": MainOrangeHRPage,
     "nopcommerce login": LoginNopCommerce,
-    "petstore": PetStore
+    "petstore": PetStore,
+    "petstore error" : petStoreError 
 };
 
 Given(/^I am on the "(.*)" page$/, async (pageName) => {

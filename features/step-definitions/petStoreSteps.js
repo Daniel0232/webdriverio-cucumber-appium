@@ -19,15 +19,33 @@ When(/^I enter on the "(.*)" page$/, async (pageName) =>{
     }
 });
 
-When (/^I fill the form for singin up$/, async() => {
-    try {
-        
-        console.log(`✅ Se ha completado correctamente el formulario de registro`);
-    } catch (error) {
-        throw new Error(`❌ No se encuentra el formulario de registro o no se ha llenado correctamente`);
+When(/^I register with the following details$/, async (table) => {
+    const userDetailsList = table.hashes(); // Transform the table in a key-value object so you can extract the value of each field in the array of objects with a for-each
+
+    for (const userDetails of userDetailsList) {
+        try {
+             //calls the register method
+            await PetStoreRegister.register(
+                userDetails.username,
+                userDetails.password,
+                userDetails.firstName,
+                userDetails.lastName,
+                userDetails.email,
+                userDetails.phone,
+                userDetails.address1,
+                userDetails.address2,
+                userDetails.city,
+                userDetails.state,
+                userDetails.zip,
+                userDetails.country
+            );
+            console.log("✅ Registro completado con éxito");
+        } catch (error) {
+            console.error("❌ Error al intentar registrar:", error);
+            throw error;
+        }
     }
 });
-
 
 
 

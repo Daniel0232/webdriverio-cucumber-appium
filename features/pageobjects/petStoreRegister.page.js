@@ -105,4 +105,4 @@ class PetStoreRegister extends Page {
     }
 }
 
-module.exports = new PetStoreRegistercv();
+module.exports = new PetStoreRegister();
