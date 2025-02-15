@@ -6,7 +6,7 @@ Feature: petstore buy pet
         When I enter on the "sing in" page
         When I enter <username> and <password> on "petstore login" page
         When I select the <category> category and choose the <petName> and add it to the cart
-        When I choose the quantity <quantity> and proceed with the checkout and confirm my order
+        When I choose the quantity <quantity> of the <petName> and proceed with the checkout and confirm my order
         Then I should see my order submited <url>
 
         Examples:
@@ -25,8 +25,6 @@ Feature: petstore buy pet
             #Then I should see a error message saying <message> from "petstore error" page
 
             #Examples:
-            | username | password | firstName | lastName | email | phone | address1    | address2 | city     | state | zip   | country | message               |
-            | a        | ad       | J         | D        | jo    | 123   | 123 Main St | Apt 4B   | New York | NY    | 10001 | USA     | Internal Server Error |
-            | us       | pas      | J         | Sm       | jane  | 9     | 456 Elm St  | Suite 1  | Miami    | FL    | 33101 | USA     | Internal Server Error |
+            
 
 
