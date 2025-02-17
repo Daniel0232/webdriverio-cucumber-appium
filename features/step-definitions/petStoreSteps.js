@@ -51,13 +51,13 @@ When(/^I register with the following details$/, async (table) => {
 When(/^I select the (.*) category and choose the (.*) and add it to the cart$/, async (category, petName) => {
 
     try {
-        PetStoreBuyPet.selectCategory(category);
+        await PetStoreBuyPet.selectCategory(category);
         console.log(`✅ La categoria se ha elegido con éxito: `);
         try {
-            PetStoreBuyPet.choosePet(petName);
+            await PetStoreBuyPet.choosePet(petName);
             console.log(`✅ La mascota se ha elegido con éxito: `);
             try {
-                PetStoreBuyPet.addPetToCart(petName);
+                await PetStoreBuyPet.addPetToCart(petName);
                 console.log(`✅ La mascota se ha añadido al carro con éxito: `);
             } catch (error) {
                 console.error(`❌ Ha habido un error al añadir la mascota al carro: `, error);
@@ -75,7 +75,7 @@ When(/^I select the (.*) category and choose the (.*) and add it to the cart$/, 
 
 When(/^I choose the quantity (.*) of the (.*) and proceed with the checkout and confirm my order$/, async (quantity, petName) => {
     try {
-        PetStoreBuyPet.checkout(quantity, petName);
+        await PetStoreBuyPet.checkout(quantity, petName);
         console.log(`✅ El checkout se ha realizado con exito: `);
     } catch (error) {
         console.error(`❌ Ha habido un error al realizar el checkout: `, error);

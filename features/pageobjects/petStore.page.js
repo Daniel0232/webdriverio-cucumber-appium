@@ -8,23 +8,27 @@ class PetStore extends Page {
     /**
      * define selectors using getter methods
      */
-    get singInButton () {
+    get singInButton() {
         return $('a[href*="signonForm="]'); // Selector that looks for any 'href' which contains 'signonForm='
-    }    
+    }
 
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
      */
-    async goSingIn () {
-        console.log(this.singInButton);
-        await this.singInButton.click();
+    async goSingIn() {
+
+        if (await this.singInButton.isExisting()) {
+            await this.singInButton.click();
+        } else{
+            console.log("The user is already logged");
+        }
     }
 
     /**
      * overwrite specific options to adapt it to page object
      */
-    open () {
+    open() {
         return super.open('https://petstore.octoperf.com/actions/Catalog.action');
     }
 }

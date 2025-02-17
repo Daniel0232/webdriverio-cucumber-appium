@@ -13,16 +13,16 @@ class PetStoreBuyPet extends Page {
         return $(`a[href*="${category.toUpperCase()}"]`); // Selector dinámico basado en la categoría
     }
 
-    addToCartButton(petName){
-        return $(`//td[normalize-space(text())="${petName}"]/preceding-sibling::td/a`);
-    }
+    addToCartButton(petName) {
+        return $(`//tr[td[normalize-space()="${petName}"]]//a[contains(@href,"addItemToCart")]`);
+    }    
 
     quantityInput(petName){
-        return $(`//td[text()="${petName}"]/preceding-sibling::td/input`);
+        return $(`//td[normalize-space()="${petName}"]/following-sibling::td/input`);
     }
 
     get proceedCheckoutButton(){
-        return $(`a[href="/actions/Order.action?newOrderForm="]`);
+        return $(`//a[contains(@href,"newOrderForm")]`);
     }
 
     get continueCheckoutButton(){
@@ -30,7 +30,7 @@ class PetStoreBuyPet extends Page {
     }
 
     get confirmCheckoutButton(){
-        return $(`a[href="/actions/Order.action?newOrder=&confirmed=true"]`);
+        return $(`//a[contains(@href,"newOrder")]`);
     }
     /**
      * a method to encapsule automation code to interact with the page
@@ -50,7 +50,6 @@ class PetStoreBuyPet extends Page {
      */
     async choosePet(petName) {
         petName = petName.match(/^\w+\s+(\w+)/)?.[1]; // this will choose only the second word from a string for example "large angelfish", only choosing the second word
-        console.log(petName+"************************************************");
         const petSelector = $(`//td[text()="${petName}"]/preceding-sibling::td/a`); // Reemplaza espacios por '+' si es necesario en la URL
         await petSelector.click();
     }
@@ -59,8 +58,6 @@ class PetStoreBuyPet extends Page {
      * Add the selected pet to the cart
      */
     async addPetToCart(petName) {
-        //const addToCartButton = $('button[name="addToCart"]'); // Ajusta el selector si es diferente
-        console.log(petName+"**********************");
         await this.addToCartButton(petName).click();
     }
 
@@ -69,8 +66,9 @@ class PetStoreBuyPet extends Page {
      */
     async checkout(quantity, petName)
     {
-        await this.quantityInput(petName).setValue(quantity)
-        await this.proceedCheckout.click();
+        const quantityInput = this.quantityInput(petName);
+        await quantityInput.setValue(quantity);
+        await this.proceedCheckoutButton.click();
         await this.continueCheckoutButton.click();
         await this.confirmCheckoutButton.click();
     }
